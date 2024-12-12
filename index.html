@@ -71,9 +71,6 @@
 
             // Update status
             statusDisplay.textContent = `Sent click #${clickCount}`;
-
-            // Optional: Haptic feedback
-            tg.hapticFeedback.impactOccurred('light');
         } catch (error) {
             statusDisplay.textContent = `Error: ${error.message}`;
         }
