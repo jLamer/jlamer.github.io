@@ -22,7 +22,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        #clickButton {
+        .clickButton {
             padding: 10px 20px;
             font-size: 16px;
             background-color: #2196F3;
@@ -41,36 +41,43 @@
 <body>
 <div class="container">
     <h1>Telegram Web App</h1>
-    <button id="clickButton">Click</button>
+    <button id="clickButton10" class="clickButton">Pay 10</button>
+    <button id="clickButton20" class="clickButton">Pay 20</button>
     <p id="status">Ready to send data</p>
 </div>
 
 <script>
     const tg = window.Telegram.WebApp;
-    const button = document.getElementById('clickButton');
+
+    const button10 = document.getElementById('clickButton10');
+    const button20 = document.getElementById('clickButton20');
+
     const statusDisplay = document.getElementById('status');
-    let clickCount = 0;
 
     // Ensure the WebApp is ready
     tg.ready();
 
-    button.addEventListener('click', () => {
-        clickCount++;
-
+    button10.addEventListener('click', () => {
         // Prepare data to send
-        const data = {
-            event: 'button_click',
-            count: clickCount,
-            timestamp: Date.now(),
-            user_id: tg.initDataUnsafe.user?.id || 'unknown'
-        };
-
         try {
-            // Send data via WebView query
-            tg.sendData(JSON.stringify(data));
+            tg.sendData(JSON.stringify({
+                event: 'button_click',
+                count: 10,
+                user_id: tg.initDataUnsafe.user?.id || 'unknown'
+            }));
+        } catch (error) {
+            statusDisplay.textContent = `Error: ${error.message}`;
+        }
+    });
 
-            // Update status
-            statusDisplay.textContent = `Sent click #${clickCount}`;
+    button20.addEventListener('click', () => {
+        // Prepare data to send
+        try {
+            tg.sendData(JSON.stringify({
+                event: 'button_click',
+                count: 10,
+                user_id: tg.initDataUnsafe.user?.id || 'unknown'
+            }));
         } catch (error) {
             statusDisplay.textContent = `Error: ${error.message}`;
         }
