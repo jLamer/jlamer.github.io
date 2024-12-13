@@ -43,6 +43,7 @@
     <h1>Telegram Web App</h1>
     <button id="clickButton10" class="clickButton">Pay 10</button>
     <button id="clickButton20" class="clickButton">Pay 20</button>
+    <button id="invoiceButton" class="clickButton">Open Invoice</button>
     <p id="status">Ready to send data</p>
 </div>
 
@@ -51,6 +52,7 @@
 
     const button10 = document.getElementById('clickButton10');
     const button20 = document.getElementById('clickButton20');
+    const invoiceButton = document.getElementById('invoiceButton');
 
     const statusDisplay = document.getElementById('status');
 
@@ -78,6 +80,15 @@
                 count: 20,
                 user_id: tg.initDataUnsafe.user?.id || 'unknown'
             }));
+        } catch (error) {
+            statusDisplay.textContent = `Error: ${error.message}`;
+        }
+    });
+
+    invoiceButton.addEventListener('click', () => {
+        // Prepare data to send
+        try {
+            tg.openInvoice("https://t.me/$-zIFcA5j4EqCDQAASRUtqBmg7-c", (status) => {});
         } catch (error) {
             statusDisplay.textContent = `Error: ${error.message}`;
         }
