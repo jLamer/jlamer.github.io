@@ -65,7 +65,8 @@
             tg.sendData(JSON.stringify({
                 event: 'button_click',
                 count: 10,
-                user_id: tg.initDataUnsafe.user?.id || 'unknown'
+                user_id: tg.initDataUnsafe.user?.id || 'unknown',
+                data: tg.initDataUnsafe
             }));
         } catch (error) {
             statusDisplay.textContent = `Error: ${error.message}`;
@@ -78,7 +79,8 @@
             tg.sendData(JSON.stringify({
                 event: 'button_click',
                 count: 20,
-                user_id: tg.initDataUnsafe.user?.id || 'unknown'
+                user_id: tg.initDataUnsafe.user?.id || 'unknown',
+                data: tg.initDataUnsafe
             }));
         } catch (error) {
             statusDisplay.textContent = `Error: ${error.message}`;
