@@ -99,6 +99,8 @@
     // Expand the web app to full screen
     tg.expand();
 
+    const el = document.getElementById('status');
+    el.innerHTML = `<p>tg.initData=${JSON.stringify(tg.initData)}</p><p>tg.initDataUnsafe=${JSON.stringify(tg.initDataUnsafe)}</p>`;
 </script>
 </body>
 </html>
